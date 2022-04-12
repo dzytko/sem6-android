@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Project1</string>
+    <string name="first_name_label">Imię:</string>
+    <string name="last_name_label">Nazwisko:</string>
+    <string name="grade_count_label">Liczba ocen:</string>
+    <string name="first_name_hint">Wpisz imię</string>
+    <string name="last_name_hint">Wpisz nazwisko</string>
+    <string name="grade_count_hint">Wpisz liczbę ocen [5-15]</string>
+    <string name="button_label">Oceny</string>
 </resources>
