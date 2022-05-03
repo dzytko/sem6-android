@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Project2</string>
+    <string name="model_text_view">model_text_view</string>
+    <string name="brand_text_view">manufacturer_text_view</string>
+    <string name="menu_clear_data">Clear data</string>
+    <string name="menu_add_data">Add data</string>
+</resources>
