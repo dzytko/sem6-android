@@ -1,10 +1,13 @@
 package com.example.project2.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "phones")
-public class Phone {
+public class Phone implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String manufacturer;
@@ -12,12 +15,35 @@ public class Phone {
     private String androidVersion;
     private String pageUrl;
 
+    public Phone() {
+    }
+
     public Phone(String manufacturer, String model, String androidVersion, String pageUrl) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.androidVersion = androidVersion;
         this.pageUrl = pageUrl;
     }
+
+    protected Phone(Parcel in) {
+        id = in.readInt();
+        manufacturer = in.readString();
+        model = in.readString();
+        androidVersion = in.readString();
+        pageUrl = in.readString();
+    }
+
+    public static final Creator<Phone> CREATOR = new Creator<Phone>() {
+        @Override
+        public Phone createFromParcel(Parcel in) {
+            return new Phone(in);
+        }
+
+        @Override
+        public Phone[] newArray(int size) {
+            return new Phone[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -59,4 +85,17 @@ public class Phone {
         this.pageUrl = pageUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(manufacturer);
+        parcel.writeString(model);
+        parcel.writeString(androidVersion);
+        parcel.writeString(pageUrl);
+    }
 }

@@ -31,4 +31,8 @@ public class PhoneViewModel extends AndroidViewModel {
     public void insertAll(List<Phone> phones) {
         phoneRepository.insertAll(phones);
     }
+
+    public void insert(Phone phone) {
+        phoneRepository.insert(phone);
+    }
 }

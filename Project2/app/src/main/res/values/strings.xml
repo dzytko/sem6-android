@@ -4,4 +4,12 @@
     <string name="brand_text_view">manufacturer_text_view</string>
     <string name="menu_clear_data">Clear data</string>
     <string name="menu_add_data">Add data</string>
+    <string name="manufacturer_label">Manufacturer</string>
+    <string name="model_label">Model</string>
+    <string name="android_version_label">Android version</string>
+    <string name="website_label">Website</string>
+    <string name="website_button">Website</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_button">Save</string>
+
 </resources>

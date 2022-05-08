@@ -31,8 +31,6 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     @Override
     public void onBindViewHolder(PhoneViewHolder holder, int position) {
         Phone phone = phoneList.get(position);
-        System.out.println("holder = " + holder + ", position = " + position);
-        System.out.println("phone = " + phone);
         holder.manufacturerTextView.setText(phone.getManufacturer());
         holder.modelTextView.setText(phone.getModel());
     }

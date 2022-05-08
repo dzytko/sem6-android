@@ -24,6 +24,10 @@ public class PhoneRepository {
         return allPhones;
     }
 
+    public void insert(Phone phone) {
+        PhoneDatabase.databaseWriteExecutor.execute(() -> phoneDao.insert(phone));
+    }
+
     public void insertAll(List<Phone> phones) {
         PhoneDatabase.databaseWriteExecutor.execute(() -> phoneDao.insertAll(phones));
     }
