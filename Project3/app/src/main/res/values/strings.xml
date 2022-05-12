@@ -9,4 +9,5 @@
     <string name="download_file_button">Download file</string>
     <string name="downloaded_size_label">Downloaded bytes</string>
     <string name="downloaded_size_value">0</string>
+    <string name="notification_title">Downloading file</string>
 </resources>
