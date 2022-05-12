@@ -1,8 +1,10 @@
 package com.example.project2.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,13 +25,18 @@ public class MainActivity extends AppCompatActivity {
     private PhoneViewModel phoneViewModel;
 
     private final int ADD_PHONE_REQUEST_CODE = 1;
+    private final int EDIT_PHONE_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adapter = new PhoneListAdapter(this);
+        adapter = new PhoneListAdapter(this, phone -> {
+            Intent intent = new Intent(this, AddPhoneActivity.class);
+            intent.putExtra("phone", phone);
+            startActivityForResult(intent, EDIT_PHONE_REQUEST_CODE);
+        });
         RecyclerView recyclerView = findViewById(R.id.phoneList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,6 +50,22 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddPhoneActivity.class);
             startActivityForResult(intent, ADD_PHONE_REQUEST_CODE);
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int adapterPosition = viewHolder.getAdapterPosition();
+                Phone phone = adapter.getPhoneAt(adapterPosition);
+                phoneViewModel.delete(phone);
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -74,6 +97,13 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && data != null) {
                     Phone phone = (Phone) data.getExtras().get("phone");
                     phoneViewModel.insert(phone);
+                }
+                break;
+            }
+            case EDIT_PHONE_REQUEST_CODE: {
+                if (resultCode == RESULT_OK && data != null) {
+                    Phone phone = (Phone) data.getExtras().get("phone");
+                    phoneViewModel.update(phone);
                 }
                 break;
             }

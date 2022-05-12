@@ -18,6 +18,14 @@ public class Phone implements Parcelable {
     public Phone() {
     }
 
+    public Phone(int id, String manufacturer, String model, String androidVersion, String pageUrl) {
+        this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.androidVersion = androidVersion;
+        this.pageUrl = pageUrl;
+    }
+
     public Phone(String manufacturer, String model, String androidVersion, String pageUrl) {
         this.manufacturer = manufacturer;
         this.model = model;
