@@ -1,8 +1,10 @@
-package com.example.project3;
+package com.example.project3.tasks;
 
 import android.os.AsyncTask;
 import android.widget.TextView;
 
+import com.example.project3.MainActivity;
+import com.example.project3.R;
 import com.example.project3.dto.FileInfo;
 
 import java.io.IOException;
